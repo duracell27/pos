@@ -77,22 +77,22 @@ export const popularDishes = [
 
 
 export const tables = [
-    { id: 1, name: "Table 1", status: "Booked", initial: "AM", seats: 4 },
-    { id: 2, name: "Table 2", status: "Available", initial: "MB", seats: 6 },
-    { id: 3, name: "Table 3", status: "Booked", initial: "JS", seats: 2 },
-    { id: 4, name: "Table 4", status: "Available", initial: "HR", seats: 4 },
-    { id: 5, name: "Table 5", status: "Booked", initial: "PL", seats: 3 },
-    { id: 6, name: "Table 6", status: "Available", initial: "RT", seats: 4 },
-    { id: 7, name: "Table 7", status: "Booked", initial: "LC", seats: 5 },
-    { id: 8, name: "Table 8", status: "Available", initial: "DP", seats: 5 },
-    { id: 9, name: "Table 9", status: "Booked", initial: "NK", seats: 6 },
-    { id: 10, name: "Table 10", status: "Available", initial: "SB", seats: 6 },
-    { id: 11, name: "Table 11", status: "Booked", initial: "GT", seats: 4 },
-    { id: 12, name: "Table 12", status: "Available", initial: "JS", seats: 6 },
-    { id: 13, name: "Table 13", status: "Booked", initial: "EK", seats: 2 },
-    { id: 14, name: "Table 14", status: "Available", initial: "QN", seats: 6 },
-    { id: 15, name: "Table 15", status: "Booked", initial: "TW", seats: 3 }
-  ];
+  { id: 1, name: "Стіл 1", status: "Заброньовано", initial: "АМ", seats: 4 },
+  { id: 2, name: "Стіл 2", status: "Доступно", initial: "МБ", seats: 6 },
+  { id: 3, name: "Стіл 3", status: "Заброньовано", initial: "ДЖС", seats: 2 },
+  { id: 4, name: "Стіл 4", status: "Доступно", initial: "ГР", seats: 4 },
+  { id: 5, name: "Стіл 5", status: "Заброньовано", initial: "ПЛ", seats: 3 },
+  { id: 6, name: "Стіл 6", status: "Доступно", initial: "РТ", seats: 4 },
+  { id: 7, name: "Стіл 7", status: "Заброньовано", initial: "ЛК", seats: 5 },
+  { id: 8, name: "Стіл 8", status: "Доступно", initial: "ДП", seats: 5 },
+  { id: 9, name: "Стіл 9", status: "Заброньовано", initial: "НК", seats: 6 },
+  { id: 10, name: "Стіл 10", status: "Доступно", initial: "СБ", seats: 6 },
+  { id: 11, name: "Стіл 11", status: "Заброньовано", initial: "ГТ", seats: 4 },
+  { id: 12, name: "Стіл 12", status: "Доступно", initial: "ДЖС", seats: 6 },
+  { id: 13, name: "Стіл 13", status: "Заброньовано", initial: "ЕК", seats: 2 },
+  { id: 14, name: "Стіл 14", status: "Доступно", initial: "КН", seats: 6 },
+  { id: 15, name: "Стіл 15", status: "Заброньовано", initial: "ТВ", seats: 3 }
+];
   
 export const startersItem = [
     {
@@ -372,15 +372,15 @@ export const salads = [
 
 
 export const menus = [
-  { id: 1, name: "Starters", bgColor: "#b73e3e" ,icon: "🍲", items: startersItem },
-  { id: 2, name: "Main Course", bgColor: "#5b45b0" ,icon: "🍛", items: mainCourse },
-  { id: 3, name: "Beverages", bgColor: "#7f167f" ,icon: "🍹", items: beverages },
-  { id: 4, name: "Soups", bgColor: "#735f32" ,icon: "🍜", items: soups },
-  { id: 5, name: "Desserts", bgColor: "#1d2569" ,icon: "🍰", items: desserts },
-  { id: 6, name: "Pizzas", bgColor: "#285430" ,icon: "🍕", items: pizzas },
-  { id: 7, name: "Alcoholic Drinks", bgColor: "#b73e3e" ,icon: "🍺", items: alcoholicDrinks },
-  { id: 8, name: "Salads", bgColor: "#5b45b0" ,icon: "🥗", items: salads }
-]
+  { id: 1, name: "Закуски", bgColor: "#b73e3e", icon: "🍲", items: startersItem },
+  { id: 2, name: "Основні страви", bgColor: "#5b45b0", icon: "🍛", items: mainCourse },
+  { id: 3, name: "Напої", bgColor: "#7f167f", icon: "🍹", items: beverages },
+  { id: 4, name: "Супи", bgColor: "#735f32", icon: "🍜", items: soups },
+  { id: 5, name: "Десерти", bgColor: "#1d2569", icon: "🍰", items: desserts },
+  { id: 6, name: "Піци", bgColor: "#285430", icon: "🍕", items: pizzas },
+  { id: 7, name: "Алкогольні напої", bgColor: "#b73e3e", icon: "🍺", items: alcoholicDrinks },
+  { id: 8, name: "Салати", bgColor: "#5b45b0", icon: "🥗", items: salads }
+];
 
 export const metricsData = [
   { title: "Revenue", value: "₹50,846.90", percentage: "12%", color: "#025cca", isIncrease: false },

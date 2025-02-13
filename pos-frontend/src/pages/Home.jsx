@@ -2,7 +2,7 @@ import Greetings from "../componets/home/Greetings"
 import MiniCard from "../componets/home/MiniCard"
 import PopularDishes from "../componets/home/PopularDishes"
 import RecentOrders from "../componets/home/RecentOrders"
-import BottonNav from "../componets/shared/BottonNav"
+import BottomNav from "../componets/shared/BottomNav"
 import {BsCashCoin} from 'react-icons/bs'
 import {GrInProgress} from 'react-icons/gr'
 
@@ -24,7 +24,7 @@ const Home = () => {
         <div className="flex-[2]">
           <PopularDishes/>
         </div>
-        <BottonNav/>
+        <BottomNav/>
     </div>
   )
 }

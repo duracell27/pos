@@ -12,8 +12,8 @@ const OrderList = () => {
         <div className="">
           <h1 className="text-[#f6b100] font-semibold border border-[#f6b100] rounded-lg p-1">Стіл 3</h1>
         </div>
-        <div className="flex flex-col items-start gap-2">
-          <p className=" text-green-600 px-4">
+        <div className="flex flex-col items-end gap-2">
+          <p className=" text-green-600">
             <FaCheckDouble className="inline mr-2" /> Готово
           </p>
           <p className="text-[#ababab] text-sm">

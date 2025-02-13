@@ -1,16 +1,17 @@
 import { useState } from "react";
-import OrderCard from "../componets/orders/OrderCard";
 import BackButton from "../componets/shared/BackButton";
 import BottomNav from "../componets/shared/BottomNav";
+import TableCard from "../componets/tables/TableCard";
+import { tables } from "../constants";
 
-const Orders = () => {
+const Tables = () => {
   const [status, setStatus] = useState("all");
   return (
-    <div className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden">
+    <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden">
       <div className="flex items-center justify-between px-10 py-4 mt-2">
         <div className="flex items-center gap-2">
           <BackButton />
-          <h1 className="text-[#f5f5f5] text-2xl font-semibold tracking-wide">Замовлення</h1>
+          <h1 className="text-[#f5f5f5] text-2xl font-semibold tracking-wide">Столи</h1>
         </div>
         <div className="flex items-center justify-center gap-4">
           <button
@@ -22,39 +23,29 @@ const Orders = () => {
             Всі
           </button>
           <button
-            onClick={() => setStatus("progress")}
+            onClick={() => setStatus("booked")}
             className={`text-[#ababab] text-lg rounded-lg px-5 py-2 font-semibold ${
-              status === "progress" ? "bg-[#383838]" : ""
+              status === "booked" ? "bg-[#383838]" : ""
             }`}
           >
-            В процесі
+            Заброньовано
           </button>
-          <button
-            onClick={() => setStatus("ready")}
-            className={`text-[#ababab] text-lg rounded-lg px-5 py-2 font-semibold ${
-              status === "ready" ? "bg-[#383838]" : ""
-            }`}
-          >
-            Готові
-          </button>
-          <button
-            onClick={() => setStatus("completed")}
-            className={`text-[#ababab] text-lg rounded-lg px-5 py-2 font-semibold ${
-              status === "completed" ? "bg-[#383838]" : ""
-            }`}
-          >
-            Завершені
-          </button>
+
         </div>
       </div>
+
       <div className="flex flex-wrap gap-6 items-center justify-center px-10 py-4 overflow-y-scroll scrollbar-thin h-[calc(100vh-14rem)]">
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
+       {
+        tables.map((table) => {
+          return (
+            <TableCard key={table.id} id={table.id} name={table.name} status={table.status} initial={table.initial} seats={table.seats} />
+          );
+        })
+       }
       </div>
       <BottomNav />
-    </div>
+    </section>
   );
 };
 
-export default Orders;
+export default Tables;
