@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { formatDate } from "../../utils";
 
 const Greetings = () => {
   const [dateTime, setDateTime] = useState(new Date());
@@ -11,28 +12,12 @@ const Greetings = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const formatDate = (date) => {
-    const month = [
-      "Січень",
-      "Лютий",
-      "Березень",
-      "Квітень",
-      "Травень",
-      "Червень",
-      "Липень",
-      "Серпень",
-      "Вересень",
-      "Жовтень",
-      "Листопад",
-      "Грудень",
-    ];
-
-    return `${month[date.getMonth()]} ${String(date.getDate()).padStart(2,'0')}, ${date.getFullYear()}`
+  const formatTime = (date) => {
+    return `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(
+      2,
+      "0"
+    )}:${String(date.getSeconds()).padStart(2, "0")}`;
   };
-
-  const formatTime = (date)=>{
-    return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
-  }
 
   return (
     <div className="flex justify-between items-center px-8 mt-5">

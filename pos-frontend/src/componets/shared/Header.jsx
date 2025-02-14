@@ -1,11 +1,14 @@
 import { FaBell, FaSearch, FaUserCircle } from "react-icons/fa";
 import logo from '../../assets/images/logo.png';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigate = useNavigate()
+    
   return (
     <div className="flex justify-between items-center py-4 px-8 bg-[#1a1a1a]">
         {/* logo */}
-        <div className="flex items-center gap-2">
+        <div onClick={() => navigate("/")} className="flex items-center gap-2">
             <img src={logo} alt="logo" className="size-8" />
             <h1 className="text-lg font-semibold text-[#f5f5f5]">Resto</h1>
         </div>

@@ -2,14 +2,23 @@ import { FaHome } from "react-icons/fa";
 import { MdOutlineReorder, MdTableBar } from "react-icons/md";
 import { CiCircleMore } from "react-icons/ci";
 import { BiSolidDish } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Modal from "./Modal";
+import { useDispatch } from "react-redux";
+import { setCustomer } from "../../redux/slices/customerSlice";
 
 const BottomNav = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+
   const [isModalOpen, setModalIsOpen] = useState(false);
   const [guestCount, setGuestCount] = useState(1);
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  // const [tableNo, setTableNo] = useState("");
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -28,25 +37,34 @@ const BottomNav = () => {
     setGuestCount(guestCount - 1);
   };
 
+  const isActiveLink = (path) => {
+    return location.pathname === path;
+  };
+
+  const handleCreateOrder = () => {
+    dispatch(setCustomer({name, phone, guests: guestCount}));
+    navigate("/tables");
+  }
+
   return (
     <div className="fixed bottom-0 left-0 right-0 flex justify-around items-center bg-[#262626] h-16 p-2">
       <button
         onClick={() => navigate("/")}
-        className="text-[#ababab] w-[200px] flex items-center justify-center bg-[#343434] rounded-[20px] py-2"
+        className={`flex items-center justify-center font-bold  rounded-[20px] py-2 ${isActiveLink("/") ? "text-[#ababab] w-[200px] bg-[#343434]" : "text-[#ababab] w-[200px] "}`}
       >
         <FaHome className="inline mr-4" size={20} />
         <p>Головна</p>
       </button>
       <button
         onClick={() => navigate("/orders")}
-        className="text-[#ababab] w-[200px] flex items-center justify-center"
+        className={`flex items-center justify-center font-bold  rounded-[20px] py-2 ${isActiveLink("/orders") ? "text-[#ababab] w-[200px] bg-[#343434]" : "text-[#ababab] w-[200px] "}`}
       >
         <MdOutlineReorder className="inline mr-4" size={20} />
         <p>Замовлення</p>
       </button>
       <button
         onClick={() => navigate("/tables")}
-        className="text-[#ababab] w-[200px] flex items-center justify-center"
+        className={`flex items-center justify-center font-bold  rounded-[20px] py-2 ${isActiveLink("/tables") ? "text-[#ababab] w-[200px] bg-[#343434]" : "text-[#ababab] w-[200px] "}`}
       >
         <MdTableBar className="inline mr-4" size={20} />
         <p>Столи</p>
@@ -56,6 +74,7 @@ const BottomNav = () => {
         <p>Більше</p>
       </button>
       <button
+        disabled={isActiveLink("/tables") || isActiveLink("/menu")}
         onClick={openModal}
         className="bg-[#f6b100] text-[#f5f5f5] rounded-full p-3 absolute items-center bottom-6"
       >
@@ -66,6 +85,8 @@ const BottomNav = () => {
           <label className="block text-[#ababab] mb-2 text-sm font-medium">{`Ім'я гостя`}</label>
           <div className=" flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f]">
             <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               type="text"
               placeholder="Ім'я гостя"
               className="bg-transparent flex-1 text-white focus:outline-none"
@@ -76,6 +97,8 @@ const BottomNav = () => {
           <label className="block text-[#ababab] mb-2 mt-2 text-sm font-medium">Номер телефону</label>
           <div className=" flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f]">
             <input
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               type="number"
               placeholder="0508098182"
               className="bg-transparent flex-1 text-white focus:outline-none"
@@ -97,7 +120,7 @@ const BottomNav = () => {
         <button
           onClick={() => {
             closeModal()
-            navigate("/tables");
+            handleCreateOrder()
           }}
           className="w-full bg-[#f6b100] text-white rounded-lg py-3 mt-6 hover:bg-amber-300"
         >
