@@ -6,12 +6,16 @@ const globalErrorHandler = require("./middlewares/globalErrorHandler");
 
 const app = express();
 const port = config.port
+app.use(express.json());
 
 connectDB();
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+//routes
+app.use('/api/user', require('./routes/userRoute'))
 
 //error handler
 app.use(globalErrorHandler)
