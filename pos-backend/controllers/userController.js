@@ -60,25 +60,34 @@ const login = async (req, res, next) => {
       secure: true,
     });
 
-    res.status(200).json({ success: true, message: "Login successful", data: { userLogin } });
+    res.status(200).json({ success: true, message: "Login successful", data: userLogin });
   } catch (error) {
     next(error);
   }
 };
 
 const getUserData = async (req, res, next) => {
-    try {
-        const user = await User.findById(req.user._id);
+  try {
+    const user = await User.findById(req.user._id);
 
-        res.status(200).json({ success: true, message: "User data", data: user });
-        
-    } catch (error) {
-        next(error)
-    }
-}
+    res.status(200).json({ success: true, message: "User data", data: user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const logout = async (req, res, next) => {
+  try {
+    res.clearCookie('accessToken')
+    res.status(200).json({ success: true, message: "Logout successful" });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   register,
   login,
   getUserData,
+  logout
 };
