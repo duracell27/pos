@@ -1,5 +1,6 @@
 const createHttpError = require("http-errors");
 const Order = require("../models/orderModel");
+const { default: mongoose } = require("mongoose");
 
 const addOrder = async (req, res, next) => {
   try {
@@ -29,6 +30,11 @@ const getOrder = async (req, res, next) => {
   try {
     const orderId = req.params.id;
 
+    if(!mongoose.Types.ObjectId.isValid(orderId)){
+      const error = createHttpError(400, "Invalid order id");
+      return next(error);
+    }
+
     const order = await Order.findById(orderId);
 
     if (!order) {
@@ -56,6 +62,11 @@ const editOrder = async (req, res, next) => {
   try {
     const { orderStatus } = req.body;
     const orderId = req.params.id;
+
+    if(!mongoose.Types.ObjectId.isValid(orderId)){
+      const error = createHttpError(400, "Invalid order id");
+      return next(error);
+    }
 
     if (!orderStatus) {
       const error = createHttpError(400, "Please provide all required fields");
