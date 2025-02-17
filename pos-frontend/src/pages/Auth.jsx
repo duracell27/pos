@@ -31,7 +31,7 @@ const Auth = () => {
           {isRegister ? "Реєстрація працівника" : "Вхід в систему"}
         </h2>
         {/* components */}
-        {isRegister ? <Register /> : <Login />}
+        {isRegister ? <Register setIsRegister={setIsRegister}/> : <Login />}
         {/* <Register /> */}
         {/* <Login /> */}
 

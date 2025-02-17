@@ -1,33 +1,63 @@
+import { useMutation } from "@tanstack/react-query";
+import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+import { register } from "../../https";
+import propTypes from "prop-types";
 
-const Register = () => {
 
-    const [formData, setFormData] = useState({
+const Register = ({setIsRegister}) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    password: "",
+    role: "",
+    email: "",
+  });
+
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRoleChange = (selectedRole) => {
+    setFormData({
+      ...formData,
+      role: selectedRole,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    registerMutation.mutate(formData);
+  };
+
+  const registerMutation = useMutation({
+    mutationFn: (reqData) => register(reqData),
+    onSuccess: (res) => {
+      const { data } = res;
+      enqueueSnackbar(data.message, { variant: "success" });
+      enqueueSnackbar("Будь ласка увійдіть", { variant: "success" });
+      setFormData({
         name: "",
         phone: "",
         password: "",
         role: "",
         email: "",
-    })
-
-    const handleInputChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleRoleChange = (selectedRole) => {
-        setFormData({
-            ...formData,
-            role: selectedRole
-        })
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(formData)
-    }
+      });
+      setIsRegister(false);
+    },
+    onError: (err) => {
+      const { response } = err;
+      enqueueSnackbar(response.data.message, { variant: "error" });
+    },
+  });
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -93,7 +123,9 @@ const Register = () => {
             {["Guest", "Admin", "Waiter"].map((role) => (
               <button
                 type="button"
-                className={`${formData.role === role ? 'bg-yellow-400': 'bg-[#1f1f1f] text-[#ababab]'} px-4 py-3 w-full rounded-lg cursor-pointer`}
+                className={`${
+                  formData.role === role ? "bg-yellow-400" : "bg-[#1f1f1f] text-[#ababab]"
+                } px-4 py-3 w-full rounded-lg cursor-pointer`}
                 key={role}
                 onClick={() => handleRoleChange(role)}
               >
@@ -108,6 +140,10 @@ const Register = () => {
       </form>
     </div>
   );
+};
+
+Register.propTypes = {
+  setIsRegister: propTypes.func.isRequired,
 };
 
 export default Register;
