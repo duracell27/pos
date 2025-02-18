@@ -4,7 +4,7 @@ const { default: mongoose } = require("mongoose");
 
 const addTable = async (req, res, next) => {
   try {
-    const { tableNo } = req.body;
+    const { tableNo, seats } = req.body;
     if (!tableNo) {
       const error = createHttpError(400, "Table No is required");
       return next(error);
@@ -18,6 +18,7 @@ const addTable = async (req, res, next) => {
 
     const table = new Table({
       tableNo,
+      seats,
     });
 
     await table.save();
@@ -30,7 +31,10 @@ const addTable = async (req, res, next) => {
 
 const getTables = async (req, res, next) => {
   try {
-    const tables = await Table.find();
+    const tables = await Table.find().populate({
+      path: "currentOrder",
+      select: 'customerDetails' 
+    });
 
     res.status(200).json({ success: true, message: "Tables", data: tables });
   } catch (error) {

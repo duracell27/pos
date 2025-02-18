@@ -15,6 +15,10 @@ const tableSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Order",
     },
+    seats: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );

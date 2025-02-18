@@ -15,11 +15,11 @@ const useLoadData = () => {
 
         const { _id, name, email, phone, role } = data.data;
         dispatch(setUser({ _id, name, email, phone, role }));
-        console.log(data);
-      } catch (error) {
+      
+      } catch (err) {
         dispatch(removeUser());
         navigate("/auth");
-        console.log(error);
+        console.log(err);
       } finally {
         setIsLoading(false);
       }
